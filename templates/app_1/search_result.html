@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br>
+<h1 align="center">Поиск</h1>
+<br>
+<center>
+<form action="{% url 'search_req' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+  <input type="submit" value="Search">
+</form>
+</center>
+
+{% if news %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">From</th>
+              <th scope="col">Site</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for new in news %}
+                <tr>
+                    <td scope="row">{{new.source}}</td>
+                    <td scope="row"><a href={{new.link}}>{{new.title}}</a><br>{{new.snippet}}</td>
+                </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+    <h2>К сожалению новостей</h2>
+{% endif %}
+
+{% endblock %}

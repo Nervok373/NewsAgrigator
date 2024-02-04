@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 align="center">Все собранные новости</h1>
+
+{% if news %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Источник</th>
+              <th scope="col">Название</th>
+              <th scope="col">Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lnews in news %}
+                <tr>
+                    <td>{{lnews.source}}</td>
+                    <td scope="row"><a href={{lnews.link}}>{{lnews.title}}</a></td>
+                    <td>{{lnews.time}}</td>
+                </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+    <h2>К сожалению новостей ещё нет</h2>
+{% endif %}
+
+
+<div class="pagination" style="
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+">
+    <span class="step-links">
+        {% if news.has_previous %}
+            <a href="?page=1">&laquo; Первая</a> |
+            <a href="?page={{ news.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+             | Стр. {{ news.number }} из {{ news.paginator.num_pages }} |
+        </span>
+
+        {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}">Следующая</a> |
+            <a href="?page={{ news.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<br><br><hr>
+
+{% endblock %}
