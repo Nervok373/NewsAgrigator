@@ -28,7 +28,7 @@ def parallel_scraper_func():
 
 
 def start_schedule():
-    schedule.every(10).minutes.do(parallel_scraper_func)
+    schedule.every(5).minutes.do(parallel_scraper_func)
 
     while True:
         schedule.run_pending()

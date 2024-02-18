@@ -71,7 +71,7 @@ def it_news_habr():
 
 
 def it_news_ycombin():
-    top_stories_id_url = "https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty"
+    top_stories_id_url = "https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty"
     top_stories_id = requests.get(top_stories_id_url, headers=headers)
     stories_id = top_stories_id.text
 
@@ -80,7 +80,7 @@ def it_news_ycombin():
                   replace("\n", "")).split(",")
 
     data = []
-    for id in stories_id[:30]:
+    for id in stories_id[:20]:
         _url = f"https://hacker-news.firebaseio.com/v0/item/{id}.json?print=pretty"
         response = requests.get(_url)
         story = response.json()
