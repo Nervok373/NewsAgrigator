@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uas#pu&69r$p(e#$)sc78_%+$(2lkfr8h^!f4qonyj2zw%cmpj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangoapp3-naeem99k.b4a.run']
+ALLOWED_HOSTS = ['newsagrigator-7c5gqox9.b4a.run']
 
 
 # Application definition
