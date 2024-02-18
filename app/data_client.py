@@ -1,6 +1,5 @@
 # import sqlite3
 from sqlite3 import Error
-# pip install psycopg2
 import psycopg2
 # import csv
 from abc import ABC, abstractmethod
@@ -80,7 +79,7 @@ class PostgresClient(DataClient):
         """f'SELECT * FROM mebel WHERE price >= {price_from} and price <= {price_to}'"""
         cursor = conn.cursor()
         cursor.execute(sql_request)
-        return cursor.fetchall()
+        return cursor.fetchone()
 
     def insert(self, conn, sql_request):
         """INSERT INTO mebel (link, price, description) VALUES ('{link}', '{price}', '{description}')"""

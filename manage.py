@@ -2,6 +2,9 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import schedule
+import threading
+import time
 
 
 def main():
@@ -18,5 +21,21 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+def parallel_scraper_func():
+    """responsible for the parallel process of scraping news and writing it to the database"""
+    from app import scrapers
+    scrapers.update_db()
+
+
+def start_schedule():
+    schedule.every(10).minutes.do(parallel_scraper_func)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
 if __name__ == '__main__':
+    thread = threading.Thread(target=start_schedule)
+    thread.start()
     main()
