@@ -42,9 +42,10 @@ class DataClient(ABC):
 
 
 class PostgresClient(DataClient):
-    USER = "nervokey"
+    #USER = "nervokey"
+    USER = "postgres"
     PASSWORD = "postgres"
-    HOST = "localhost"
+    HOST = "pgdb"
     PORT = "5432"
 
     def get_connection(self):

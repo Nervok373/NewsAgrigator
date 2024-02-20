@@ -36,6 +36,7 @@ def start_schedule():
 
 
 if __name__ == '__main__':
+    parallel_scraper_func()
     thread = threading.Thread(target=start_schedule)
     thread.start()
     main()

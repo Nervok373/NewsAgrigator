@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uas#pu&69r$p(e#$)sc78_%+$(2lkfr8h^!f4qonyj2zw%cmpj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['newsagrigator-7c5gqox9.b4a.run']
+ALLOWED_HOSTS = ['newsagrigator-7c5gqox9.b4a.run', '127.0.0.1', '0.0.0.0', 'localhost']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'rest_framework'
+    'rest_framework',
+    'django.contrib.postgres'
 ]
 
 MIDDLEWARE = [
@@ -84,14 +85,26 @@ WSGI_APPLICATION = 'SearchAgrigate.wsgi.application'
 #     }
 # }
 
+# юзаю на локале без докера
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'nervokey',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'nervokey',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',   # Используется PostgreSQL
+        'NAME': 'postgres',  # Имя базы данных
+        'USER': 'postgres',  # Имя пользователя
+        'PASSWORD': 'postgres',  # Пароль пользователя
+        'HOST': 'pgdb',  # Наименование контейнера для базы данных в Docker Compose
+        'PORT': '5432',  # Порт базы данных
     }
 }
 
